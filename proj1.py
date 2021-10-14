@@ -32,25 +32,6 @@ def read_csv(file):
         the double-nested dictionary that holds the data from the csv.
 
     '''
-    # file_object = open(file, "r")
-    # lines = file_object.readlines()
-    # file.close()
-        #inputs lines as list elements
-        
-
-    # data_dict = {}
-    # row_count =  1
-    # header_dict = {}
-
-    # path = os.path.dirname(os.path.abspath(__file__)) + os.sep
-    # with open(path + file, "r") as f:
-    #     lines = f.readlines()
-    #     race_index = 1
-    #     for race in lines[0]:
-    #         header_dict[x] = 0
-    #         x = x+1
-    #     for x in list(lines[1:]):
-    #         data_dict[list(lines[0])] = dict()
     
     data_dict = {}
     path = os.path.dirname(os.path.abspath(__file__)) + os.sep
@@ -120,14 +101,7 @@ def pct_calc(data_dict):
             if demo != "State Totals" and demo != "NO RESPONSE":
                 num = ((data_dict[key][demo])/(data_dict[key]["State Totals"])) * 100
                 pct_dict[key][demo] = round(num,2)
-    # for key in pct_dict:
-    #     for value in pct_dict[key]:
-    #         if value == "State Totals":
-    #             pct_dict[key].pop("State Totals")
-                
-                #
-                # num = (key[value]/key[-3]) * 100
-                # pct_dict[value] = num
+
     return(pct_dict)
     # write in code here
     # it should take the number for each demographic for each state and divide it by the state total column
@@ -148,26 +122,9 @@ def pct_dif(data_dict1, data_dict2):
                     diff = abs(round(diff, 2))
                     pct_diff_dict[key][value] = diff #Sets value in data_dict1 = diff when it should only set value in pct_diff_dict = diff
     return pct_diff_dict
-    '''
-    Function to compute the difference between the demographic percentages
 
-    Parameters
-    ----------
-    data_dict1 : dict
-        the first data_dict you pass in. In this case, the ap_data
-    data_dict2 : dict
-        the second data_dict you pass in. In this case, the census_data
-
-    Returns
-    -------
-    pct_dif_dict: dict
-        the dictionary of the percent differences.
-    '''
-    pass
     
     # creating the dictionary to hold the pct diferences for each "cell"
-    pct_dif_dict = {}
-    
     # write code here
     # it should subtract the % val of each val in the 2nd dict from the 1st dict
     # it should take the absolute value of that difference and round it to 2 decimal places
@@ -176,9 +133,6 @@ def pct_dif(data_dict1, data_dict2):
     # hint: you want to have a way to deal with the difference in naming conventions
     # ex: "North Carolina" vs "North-Carolina" string.replace is your friend
     
-    pass
-    return(pct_dif_dict)
-
 def csv_out(data_dict, file_name):
     '''
     Function to write output to a file    
@@ -206,12 +160,7 @@ def csv_out(data_dict, file_name):
             first_row = [key] + list(data_dict[key].values())
             csv_writer.writerow(first_row)
 
-            # for value in data_dict[key]:
-            #     csv_writer.writerow(value)
-
-        
         header = ["State"] + list(data_dict["Alabama"].keys())
-            
         # you'll want to write the rest of the code here
         # you want to write the header info as the first row 
         # you want to then write each subsequent row of data 
@@ -282,66 +231,6 @@ def max_min(data_dict):
                 sorted_list = dict(sorted_list[0:5])
                 demo[i] = sorted_list
         max_min["min"] = demo
-    #print(max_min)
-        
-# #newcode4 attempt:
-#     sorted_list = []
-#     for demo in data_dict:
-#         demo = {}
-#         value = dict(data_dict[demo])
-#         sorted
-
-#     #newcode3 CORRECT:
-#     sorted_list = []
-#     for demo in data_dict:
-#         demo = {} #elena's said
-#         value = dict(data_dict[demo])
-#         sorted_list.append(sorted(value.items(), key = lambda x:x[1], reverse = True))
-#         sorted_list_max = sorted_list[:4]
-#         demo[demo] = sorted_list_max #maybe? but gives error
-#         #create a demo dictionary
-        
-#         for i in sorted_list_max:
-#             demo[demo] = i
-#         max_min["max"] = demo
-        
-#         #turn it back into a tuple.
-        
-#     #new code2:
-#     sorted_list_min = []
-#     for demo in data_dict:
-#         sorted(demo.items(), key = lambda x:x[1])
-#     #new code1:
-#     sorted_list_min = []
-#     for demo in data_dict:
-#         for state in demo:
-#             #sort by state's numbers
-#         sorted_list = sorted([state], key = lambda x:x[1])
-#         sorted_list_min.extend(sorted_list)
-#         #sorts the values of the demographic by alphabetical states, but want by their numeric values
-#     min[demo] = sorted_list_min[:4]
-#     #old code:
-#     for demo in data_dict:
-#         sorted_list_min = []
-#         sorted_list_min += sorted([demo], key = lambda x:x[1])
-#         #sorted_list_min has states in order of lowest to highest diff.
-#         min[demo] = sorted_list_min[:4]
-#         print(sorted_list_min)
-#         #now index with slicing
-#         counter_min = 0
-#         for key in demo:
-#             max_min[min][demo] = sorted_list_min[demo][key]
-#             counter_min += 1
-#             if counter_min > 4:
-#                 break
-#         sorted_dict_max = sorted(demo.items(), key = lambda x:x[1], reverse = True)
-#         counter_max = 0
-#         for key in demo:
-#             max_min[max][demo] = sorted_dict_max[demo][key]
-#             counter_max += 1
-#             if counter_max > 4:
-#                 break
-    #pass
     return(max_min)
         
     
