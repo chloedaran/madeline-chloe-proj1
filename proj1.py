@@ -137,14 +137,12 @@ def pct_calc(data_dict):
 
 
 def pct_dif(data_dict1, data_dict2):
-    pct_diff_dict = data_dict1
-    #print(data_dict1)
-    #pct_data_dict1 = pct_calc(data_dict1)
-    #pct_data_dict2 = pct_calc(data_dict2)
+    pct_diff_dict = {}
     for key in data_dict1:
         key2 = key.replace("-", " ")
-        if key != "State Totals" and key != "NO RESPONSE":
-            for value in data_dict1[key]:
+        pct_diff_dict.setdefault(key, {})
+        for value in data_dict1[key]:
+            if data_dict1[key] != "State Totals" and data_dict1[key] != "NO RESPONSE":
                 if value in data_dict2[key2]:
                     diff = data_dict1[key][value] - data_dict2[key2][value]
                     diff = abs(round(diff, 2))
